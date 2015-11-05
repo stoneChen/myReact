@@ -1,36 +1,36 @@
 /* global __DEVTOOLS__ */
-import React from 'react'
-import { Provider } from 'react-redux'
-import { Route } from 'react-router'
-import { ReduxRouter } from 'redux-router'
-import configStore from './base/store'
-import Application from './base/Application'
-import * as routes from './base/route'
-import NoMatch from './base/NoMatch'
+import React from 'react';
+import { Provider } from 'react-redux';
+import { Route } from 'react-router';
+import { ReduxRouter } from 'redux-router';
+import configStore from './base/store';
+import Application from './base/Application';
+import * as routes from './base/route';
+import NoMatch from './base/NoMatch';
 
-const store = configStore()
+const store = configStore();
 
 const concatSubRoutes = function () {//todo es6是否有更简洁的方法？
-  const keys = Object.keys(routes)
-  let routeConfig = []
+  const keys = Object.keys(routes);
+  let routeConfig = [];
   keys.forEach(k => {
-    const route = routes[k]
-    routeConfig = routeConfig.concat(route)
-  })
-  return routeConfig
-}
+    const route = routes[k];
+    routeConfig = routeConfig.concat(route);
+  });
+  return routeConfig;
+};
 
 const renderDebugPanel = function () {
   if (__DEVTOOLS__) {
     const { DevTools, DebugPanel, LogMonitor } =
-      require('redux-devtools/lib/react')
+      require('redux-devtools/lib/react');
     return (
       <DebugPanel key="debug-panel" top right bottom>
         <DevTools store={store} monitor={LogMonitor} />
       </DebugPanel>
-    )
+    );
   }
-}
+};
 
 React.render(
   <div className="container">
@@ -46,4 +46,4 @@ React.render(
     </Provider>
     {renderDebugPanel()}
   </div>
-  , document.getElementById('app'))
+  , document.getElementById('app'));

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 class NoMatchComponent extends React.Component {
   render () {
@@ -6,7 +6,7 @@ class NoMatchComponent extends React.Component {
       <div className="nomatch-component">
         This is the NoMatch Component.
       </div>
-    )
+    );
   }
 }
 
@@ -14,4 +14,4 @@ class NoMatchComponent extends React.Component {
 // NoMatchComponent.propTypes = {};
 // NoMatchComponent.defaultProps = {};
 
-export default NoMatchComponent
+export default NoMatchComponent;

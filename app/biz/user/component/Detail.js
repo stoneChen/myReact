@@ -1,10 +1,10 @@
-require('./detail.less')
+require('./detail.less');
 
-import React, { PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { pushState } from 'redux-router'
-import { bindActionCreators } from 'redux'
-import * as userActions from '../action'
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { pushState } from 'redux-router';
+import { bindActionCreators } from 'redux';
+import * as userActions from '../action';
 
 class Detail extends React.Component {
   static propTypes = {
@@ -12,34 +12,34 @@ class Detail extends React.Component {
     users: PropTypes.array.isRequired,
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
-  }
+  };
 
   constructor (props, context) {
-    super(props, context)
-    const { users, params } = this.props
-    const userId = params.id
+    super(props, context);
+    const { users, params } = this.props;
+    const userId = params.id;
     const curUser = this.curUser =
-      users.find( u => u.id.toString() === userId )
+      users.find( u => u.id.toString() === userId );
     this.state = {
       name: curUser.name,
       age: curUser.age
-    }
+    };
   }
 
   backToUserList () {
-    this.props.actions.pushState(null, '/user-list')
+    this.props.actions.pushState(null, '/user-list');
   }
 
   handleNameChange (e) {
     this.setState({
       name: e.target.value
-    })
+    });
   }
 
   handleAgeChange (e) {
     this.setState({
       age: e.target.value
-    })
+    });
   }
 
   handleSubmit () {
@@ -47,13 +47,13 @@ class Detail extends React.Component {
       id: this.curUser.id,
       name: this.state.name,
       age: this.state.age
-    })
-    this.backToUserList()
+    });
+    this.backToUserList();
   }
 
   handleDel () {
-    this.props.actions.del(this.curUser.id)
-    this.backToUserList()
+    this.props.actions.del(this.curUser.id);
+    this.backToUserList();
   }
 
   render () {
@@ -93,7 +93,7 @@ class Detail extends React.Component {
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
 
@@ -101,13 +101,13 @@ class Detail extends React.Component {
 const mapStateToProps = function (state) {
   return {
     users: state.user
-  }
-}
+  };
+};
 
 const mapDispatchToProps = function (dispatch) {
-  userActions.pushState = pushState //todo 这么做是不是有坑？
+  userActions.pushState = pushState; //todo 这么做是不是有坑？
   return {
     actions: bindActionCreators(userActions, dispatch)
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Detail)
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Detail);

@@ -1,13 +1,13 @@
-require('bootstrap/dist/css/bootstrap.min.css')
+require('bootstrap/dist/css/bootstrap.min.css');
 
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router'
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 class Application extends Component {
   static propTypes = {
     children: PropTypes.any
-  }
+  };
 
   render () {
     return (
@@ -15,12 +15,12 @@ class Application extends Component {
         <Link to="/user-list">user-list</Link>
         {this.props.children}
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps (state) {
-  return state
+  return state;
 }
 
-export default connect(mapStateToProps)(Application)
+export default connect(mapStateToProps)(Application);

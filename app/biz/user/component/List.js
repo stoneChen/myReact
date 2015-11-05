@@ -1,17 +1,17 @@
-require('./list.less')
+require('./list.less');
 
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router'
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 
 class List extends Component {
   static propTypes = {
     users: PropTypes.array.isRequired
-  }
+  };
 
   render () {
-    const { users } = this.props
+    const { users } = this.props;
     return (
       <div className="component-user-list">
         This is the User List Component.
@@ -25,7 +25,7 @@ class List extends Component {
           }
         </ul>
       </div>
-    )
+    );
   }
 }
 
@@ -36,7 +36,7 @@ class List extends Component {
 const mapStateToProps = function (state) {
   return {
     users: state.user
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps)(List)
+export default connect(mapStateToProps)(List);

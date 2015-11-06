@@ -10,8 +10,7 @@ class Detail extends React.Component {
   static propTypes = {
     actions: PropTypes.object.isRequired,
     users: PropTypes.array.isRequired,
-    params: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired
+    params: PropTypes.object.isRequired
   };
 
   constructor (props, context) {

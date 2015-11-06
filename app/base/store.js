@@ -23,10 +23,12 @@ export default function configureStore (initialState) {
 
   const store = finalCreateStore(combinedReducer, initialState);
 
-  //if (module.hot)
-  //// Enable Webpack hot module replacement for reducers
-  //  module.hot.accept('../reducers', () => {
-  //    const nextRootReducer = require('../reducers/index')
+  if (module.hot){
+    module.hot.accept();
+  }
+  // Enable Webpack hot module replacement for reducers
+  //  module.hot.accept('./reducer', () => {
+  //    const nextRootReducer = require('./reducer')
   //    store.replaceReducer(nextRootReducer)
   //  })
 

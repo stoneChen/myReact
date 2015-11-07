@@ -22,8 +22,8 @@ const combinedReducer = combineReducers(reducers);
 export default function configureStore (initialState) {
 
   const store = finalCreateStore(combinedReducer, initialState);
-
-  if (module.hot){
+  console.log('module.hot:', module.hot);
+  if (module.hot) {
     module.hot.accept();
   }
   // Enable Webpack hot module replacement for reducers

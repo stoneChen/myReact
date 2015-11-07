@@ -4,37 +4,40 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
-  entry: [
-    'webpack-hot-middleware/client',
-    './app/index'
-  ],
+  entry: {
+    app: './app/index.js'
+  },
   output: {
-    filename: 'app.js',
+    filename: '[name].min.js',
     path: path.join(__dirname, 'dist'),
-    publicPath: ''
+    publicPath: '/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('development')
+        'NODE_ENV': JSON.stringify('production')
       },
-      '__DEVTOOLS__': process.env.DEVTOOLS === 'true' ? true : false
+      '__DEVTOOLS__': false
     }),
-    new ExtractTextPlugin('app.css', {allChunks: true}),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    }),
+    new ExtractTextPlugin('app.css', { allChunks: true }),
     new HtmlWebpackPlugin({
       title: 'Redux React Router Example',
       filename: 'index.html',
       template: 'index.template.html',
-      favicon: path.join(__dirname, 'assets', 'images', 'favicon.ico')
+      favicon: path.join(__dirname, 'assets/images/favicon.ico')
     })
   ],
   module: {
     loaders: [
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!cssnext-loader')},
-      {test: /\.js$/, loaders: ['babel'], include: path.join(__dirname, 'app')},
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!cssnext-loader') },
+      { test: /\.js$/, loaders: ['babel'], include: path.join(__dirname, 'app') },
       {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
       {test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=8192'}
     ]

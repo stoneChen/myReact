@@ -1,22 +1,30 @@
 var path = require('path');
 var express = require('express');
-var webpack = require('webpack');
-var config = require('./webpack.config');
 var open = require('open');
+
+var webpack, config, compiler;
 
 var app = express();
 var port = 3000;
-var compiler = webpack(config);
 
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: config.output.publicPath
-}));
-
-app.use(require('webpack-hot-middleware')(compiler));
+  console.log(process.env.NODE_ENV)
+if (process.env.NODE_ENV !== 'production') {
+  console.log('dev mode')
+  webpack = require('webpack');
+  config = require('./webpack.config');
+  compiler = webpack(config);
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    publicPath: config.output.publicPath
+  }));
+  app.use(require('webpack-hot-middleware')(compiler));
+} else {
+  console.log('production mode')
+  app.use(express.static('dist'));
+}
 
 app.get('*', function (req, res) {
-  console.log(req.url);
+  console.log('*:', req.url);
   res.sendFile(path.join(__dirname, './dist/index.html'));
 });
 

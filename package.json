@@ -5,12 +5,16 @@
   "author": "cloudStone <baby31529@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "npm run clean && webpack",
     "clean": "rimraf dist",
-    "dist": "npm run clean && npm run lint && NODE_ENV=production webpack --config webpack.config.production.js",
     "lint": "eslint app",
-    "start": "npm run build && node server.js",
-    "dev": "npm run build && DEVTOOLS=true node server.js"
+    "build:dev":  "npm run clean && npm run lint && webpack",
+    "build:prod": "npm run clean && npm run lint && NODE_ENV=production webpack --config webpack.config.production.js",
+    "serve:dev":  "node server.js",
+    "serve:prod": "NODE_ENV=production node server.js",
+    "dev:debug": "npm run build:dev && DEVTOOLS=true node server.js",
+    "dev":   "npm run build:dev && node server.js",
+    "prod":  "npm run build:prod && npm run serve:prod",
+    "start": "npm run dev:debug"
   },
   "dependencies": {
     "babel-runtime": "5.8.25",

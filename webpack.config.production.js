@@ -26,7 +26,7 @@ module.exports = {
         warnings: false
       }
     }),
-    new ExtractTextPlugin('app.css', { allChunks: true }),
+    new ExtractTextPlugin('app.min.css', { allChunks: true }),
     new HtmlWebpackPlugin({
       title: 'Redux React Router Example',
       filename: 'index.html',

@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import { Route } from 'react-router';
 import { ReduxRouter } from 'redux-router';
 import configStore from './base/store';
-import Application from './base/Application';
+import Application from './widget/Application';
+import NoMatch from './widget/NoMatch';
 import * as routes from './base/route';
-import NoMatch from './base/NoMatch';
 
 const store = configStore();
 

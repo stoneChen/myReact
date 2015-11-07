@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
 import { bindActionCreators } from 'redux';
-import * as userActions from '../action';
+import * as userActions from '../../action';
 
 class Detail extends React.Component {
   static propTypes = {
@@ -58,12 +58,20 @@ class Detail extends React.Component {
   render () {
     return (
       <div className="component-user-detail">
-        <p>This is the User Detail Component.</p>
-        <p>userId: {this.props.params.id}</p>
-
+        <h3>This is the User Detail Component.</h3>
         <form  className="form-horizontal">
           <div className="form-group">
-            <label className="col-xs-2 control-label">name:</label>
+            <label className="col-xs-1 control-label">id:</label>
+            <div className="col-xs-6">
+              <input type="text"
+                     className="form-control"
+                     value={this.props.params.id}
+                     readOnly
+                />
+            </div>
+          </div>
+          <div className="form-group">
+            <label className="col-xs-1 control-label">name:</label>
             <div className="col-xs-6">
               <input type="text"
                      className="form-control"
@@ -72,7 +80,7 @@ class Detail extends React.Component {
             </div>
           </div>
           <div className="form-group">
-            <label className="col-xs-2 control-label">age:</label>
+            <label className="col-xs-1 control-label">age:</label>
             <div className="col-xs-6">
               <input type="text"
                      className="form-control"
@@ -81,13 +89,10 @@ class Detail extends React.Component {
             </div>
           </div>
           <div className="form-group">
-            <div className="col-xs-10 col-xs-offset-2">
+            <div className="col-xs-10 col-xs-offset-1">
               <button className="btn btn-primary"
                       type="button"
                       onClick={this.handleSubmit.bind(this)}>提交</button>
-              <button className="btn btn-danger"
-                      type="button"
-                      onClick={this.handleDel.bind(this)}>删除</button>
             </div>
           </div>
         </form>

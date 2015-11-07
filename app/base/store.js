@@ -1,6 +1,7 @@
 /* global __DEVTOOLS__ */
 import { routerStateReducer, reduxReactRouter } from 'redux-router';
-import { createHistory } from 'history';
+//import { createHistory } from 'history';
+import createHashHistory from 'history/lib/createHashHistory';
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
@@ -10,7 +11,7 @@ reducers['router'] = routerStateReducer;
 
 let combinedCreateStore;
 const logger = createLogger();
-const storeEnhancers = [reduxReactRouter({ createHistory })];
+const storeEnhancers = [reduxReactRouter({ createHistory: createHashHistory })];
 if (__DEVTOOLS__) {
   const { devTools } = require('redux-devtools');
   storeEnhancers.push(devTools());

@@ -92,7 +92,7 @@ class Detail extends React.Component {
             <div className="col-xs-10 col-xs-offset-1">
               <button className="btn btn-primary"
                       type="button"
-                      onClick={this.handleSubmit.bind(this)}>提交</button>
+                      onClick={this.handleSubmit.bind(this)}>Submit</button>
             </div>
           </div>
         </form>

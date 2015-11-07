@@ -1,7 +1,7 @@
 /* global __DEVTOOLS__ */
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Route } from 'react-router';
+import { Route, Redirect } from 'react-router';
 import { ReduxRouter } from 'redux-router';
 import configStore from './base/store';
 import Application from './widget/Application';
@@ -37,6 +37,7 @@ React.render(
     <Provider store={store}>
       {() => (
         <ReduxRouter>
+          <Redirect from="/" to="/home" />
           <Route path="/" component={Application}>
             {concatSubRoutes()}
           </Route>

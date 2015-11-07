@@ -12,7 +12,6 @@ class Application extends Component {
   render () {
     return (
       <div className="application">
-        <Link to="/user-list">user-list</Link>
         {this.props.children}
       </div>
     );

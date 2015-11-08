@@ -5,7 +5,8 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: './app/index.js'
+    app: './app/index.js',
+    vendor: ['react', 'react-router', 'redux', 'redux-router', 'react-redux', 'redux-thunk', 'redux-logger']
   },
   output: {
     filename: '[name].min.js',
@@ -13,6 +14,7 @@ module.exports = {
     publicPath: ''
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.min.js"),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({

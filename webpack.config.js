@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
+var sourceDir = path.join(__dirname, 'app');
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
@@ -34,7 +35,8 @@ module.exports = {
   module: {
     loaders: [
       {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!cssnext-loader')},
-      {test: /\.js$/, loaders: ['babel'], include: path.join(__dirname, 'app')},
+      {test: /\.js$/, loaders: ['babel'], include: sourceDir },
+      {test: /\.js$/, loader: "eslint-loader", include: sourceDir },
       {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
       {test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=8192'}
     ]

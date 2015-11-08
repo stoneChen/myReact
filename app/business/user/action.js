@@ -1,5 +1,4 @@
 import { USER_ACTION } from './constant';
-import fetch from '../../util/xhr';
 
 export function add (user) {
   return {

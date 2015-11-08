@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link } from 'react-router';
+import { Route } from 'react-router';
 import List from './view/List';
 import Detail from './view/Detail';
 

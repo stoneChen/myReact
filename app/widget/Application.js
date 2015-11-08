@@ -2,7 +2,6 @@ require('bootstrap/dist/css/bootstrap.min.css');
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 
 class Application extends Component {
   static propTypes = {

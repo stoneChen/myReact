@@ -8,6 +8,6 @@ export default class Home extends Component {
         <h3>This is the Home page</h3>
         <Link to="/user-list">go to user-list</Link>
       </div>
-    )
+    );
   }
 }

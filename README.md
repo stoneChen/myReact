@@ -4,16 +4,36 @@
 
 之前尝试了若干个demo，这是到目前为止第一个自己相对满意的demo。
 
-### 用到的react相关的主要组件列表
+### 运行
+安装node模块依赖：
+```
+npm install
+```
+启动 **开启** redux-devtools的开发环境：
+```
+npm start
+```
+
+启动 **关闭** redux-devtools的开发环境：
+```
+npm run dev
+```
+
+启动production环境：
+```
+npm run prod
+```
+
+### 用到的react相关主要组件列表
 
 * react
+* react-router
+* react-redux
 * redux
 * redux-thunk
 * redux-logger
 * redux-devtools
-* react-redux
 * redux-router
-* react-router
 
 ### 构建|开发相关：
 * webpack

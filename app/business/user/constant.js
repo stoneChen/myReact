@@ -1,5 +1,6 @@
 export const USER_ACTION = {
   ADD: 'ADD',
   DEL: 'DEL',
-  UPDATE: 'UPDATE'
+  UPDATE: 'UPDATE',
+  GET_LIST: 'GET_LIST'
 };

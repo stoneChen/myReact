@@ -1,4 +1,5 @@
 import { USER_ACTION } from './constant';
+import fetch from '../../util/xhr';
 
 export function add (user) {
   return {
@@ -18,5 +19,12 @@ export function update (user) {
   return {
     type: USER_ACTION.UPDATE,
     payload: user
+  };
+}
+
+export function getList () {
+
+  return {
+    type: USER_ACTION.GET_LIST
   };
 }

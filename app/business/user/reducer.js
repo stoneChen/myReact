@@ -16,6 +16,9 @@ const initState = [
 export default function (state = initState, action = {}) {
   const type = action.type;
   switch (type) {
+    case USER_ACTION.GET_LIST:
+      return action.payload;
+
     case USER_ACTION.ADD:
       const newId = Date.now();
       return [

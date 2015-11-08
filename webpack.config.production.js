@@ -9,12 +9,12 @@ module.exports = {
     vendor: ['react', 'react-router', 'redux', 'redux-router', 'react-redux', 'redux-thunk', 'redux-logger']
   },
   output: {
-    filename: '[name].min.js',
+    filename: '[name].[chunkhash].js',
     path: path.join(__dirname, 'dist'),
     publicPath: ''
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.min.js"),
+    new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.[chunkhash].js"),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
@@ -33,6 +33,7 @@ module.exports = {
       title: 'Redux React Router Example',
       filename: 'index.html',
       template: 'index.template.html',
+      //hash: true,
       favicon: path.join(__dirname, 'assets/images/favicon.ico')
     })
   ],

@@ -3,34 +3,34 @@ require('./list.less');
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as userActions from '../../action';
+import * as actions from '../../action';
 import Row from './Row';
 
 class List extends Component {
   static propTypes = {
     actions: PropTypes.object.isRequired,
-    users: PropTypes.array.isRequired
+    credits: PropTypes.array.isRequired
   };
 
   render () {
-    const { users } = this.props;
+    const { credits } = this.props;
     return (
-      <div className="component-user-list">
-        <h3>This is the User List Component.</h3>
+      <div className="component-credit-list">
+        <h3>This is the Credit List Component.</h3>
         <table className="table table-bordered">
           <thead>
             <tr>
               <th>id</th>
-              <th>name</th>
-              <th>age</th>
+              <th>limit</th>
+              <th>expiredDate</th>
               <th>operation</th>
             </tr>
           </thead>
           <tbody>
           {
-            users.map( user =>
-                <Row key={user.id}
-                     user={user}
+            credits.map( credit =>
+                <Row key={credit.id}
+                     credit={credit}
                      del={this.props.actions.del} />
             )
           }
@@ -41,19 +41,15 @@ class List extends Component {
   }
 }
 
-// Uncomment properties you need
-// UsersComponent.propTypes = {};
-// UsersComponent.defaultProps = {};
-
 const mapStateToProps = function (state) {
   return {
-    users: state.user
+    credits: state.credit
   };
 };
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    actions: bindActionCreators(userActions, dispatch)
+    actions: bindActionCreators(actions, dispatch)
   };
 };
 

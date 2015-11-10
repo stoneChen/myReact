@@ -14,6 +14,7 @@ const initState = [
 ];
 
 export default function (state = initState, action = {}) {
+  debugger;
   const type = action.type;
   switch (type) {
     case USER_ACTION.GET_LIST:

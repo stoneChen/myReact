@@ -18,8 +18,8 @@ module.exports = {
   resolve: {
     extensions: ['', '.js'],
     alias: {
-      util: sourceDir + '/util/',
-      widget: sourceDir + '/widget/'
+      util: sourceDir + '/util',
+      widget: sourceDir + '/widget'
     }
   },
   plugins: [
@@ -42,9 +42,10 @@ module.exports = {
   module: {
     loaders: [
       {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!cssnext-loader')},
-      {test: /\.js$/, loaders: ['babel'], include: sourceDir },
-      {test: /\.js$/, loader: "eslint-loader", include: sourceDir },
+      {test: /\.js$/, loaders: ['babel'], include: sourceDir},
+      {test: /\.js$/, loader: "eslint-loader", include: sourceDir},
       {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
+      {test: /\.scss/,loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'},
       {test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=8192'}
     ]
   },

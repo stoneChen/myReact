@@ -1,4 +1,4 @@
-require('./list.less');
+require('./list.scss');
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';

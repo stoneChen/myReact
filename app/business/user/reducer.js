@@ -1,5 +1,5 @@
 import { USER_ACTION } from './constant';
-import log from 'util/debug';
+//import log from 'util/debug';
 
 const initState = [
   {
@@ -15,7 +15,6 @@ const initState = [
 ];
 
 export default function (state = initState, action = {}) {
-  log(action);
   const type = action.type;
   switch (type) {
     case USER_ACTION.GET_LIST:

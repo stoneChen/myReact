@@ -1,10 +1,13 @@
-require('./detail.less');
+require('./detail.scss');
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { pushState } from 'redux-router';
 import { bindActionCreators } from 'redux';
 import * as userActions from '../../action';
+import log from '../../log';
+//import log from 'util/debug';
+
 
 class Detail extends React.Component {
   static propTypes = {
@@ -23,6 +26,7 @@ class Detail extends React.Component {
       name: curUser.name,
       age: curUser.age
     };
+    log('constructor');
   }
 
   backToUserList () {

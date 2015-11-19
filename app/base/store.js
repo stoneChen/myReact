@@ -23,7 +23,6 @@ const combinedReducer = combineReducers(reducers);
 export default function configureStore (initialState) {
 
   const store = finalCreateStore(combinedReducer, initialState);
-  console.log('module.hot:', module.hot);
   if (module.hot) {
     module.hot.accept();
   }

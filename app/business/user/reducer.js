@@ -1,4 +1,5 @@
 import { USER_ACTION } from './constant';
+import log from 'util/debug';
 
 const initState = [
   {
@@ -14,7 +15,7 @@ const initState = [
 ];
 
 export default function (state = initState, action = {}) {
-  debugger;
+  log(action);
   const type = action.type;
   switch (type) {
     case USER_ACTION.GET_LIST:
@@ -28,6 +29,7 @@ export default function (state = initState, action = {}) {
       ];
 
     case USER_ACTION.DEL:
+      debugger;
       return state.filter( user =>
         user.id !== action.payload.id
       );

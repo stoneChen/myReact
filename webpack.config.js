@@ -15,6 +15,13 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     publicPath: ''
   },
+  resolve: {
+    extensions: ['', '.js'],
+    alias: {
+      util: sourceDir + '/util/',
+      widget: sourceDir + '/widget/'
+    }
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),

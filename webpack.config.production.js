@@ -3,18 +3,26 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
+var sourceDir = path.join(__dirname, 'app');
 module.exports = {
   entry: {
-    app: './app/index.js',
-    vendor: ['react', 'react-router', 'redux', 'redux-router', 'react-redux', 'redux-thunk', 'redux-logger']
+    app: './app/index.js'
+    //,vendor: ['react', 'react-router', 'redux', 'redux-router', 'react-redux', 'redux-thunk', 'redux-logger']
   },
   output: {
     filename: '[name].[chunkhash].js',
     path: path.join(__dirname, 'dist'),
     publicPath: ''
   },
+  resolve: {
+    extensions: ['', '.js'],
+    alias: {
+      util: sourceDir + '/util/',
+      widget: sourceDir + '/widget/'
+    }
+  },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.[chunkhash].js"),
+    //new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.[chunkhash].js"),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
@@ -40,7 +48,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!cssnext-loader') },
-      { test: /\.js$/, loaders: ['babel'], include: path.join(__dirname, 'app') },
+      { test: /\.js$/, loaders: ['babel'], include: sourceDir },
       {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
       {test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=8192'}
     ]

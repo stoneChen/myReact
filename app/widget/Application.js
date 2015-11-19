@@ -1,4 +1,6 @@
 require('bootstrap/dist/css/bootstrap.min.css');
+const FastClick = require('fastclick');
+FastClick.attach(document.body);
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';

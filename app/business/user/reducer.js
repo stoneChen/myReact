@@ -28,7 +28,6 @@ export default function (state = initState, action = {}) {
       ];
 
     case USER_ACTION.DEL:
-      debugger;
       return state.filter( user =>
         user.id !== action.payload.id
       );

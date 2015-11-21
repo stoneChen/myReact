@@ -2,6 +2,7 @@ import React,{ Component, PropTypes } from 'react';
 
 export default class Confirm extends Component {
   static propTypes = {
+    content: PropTypes.string.isRequired,
     onConfirm: PropTypes.func.isRequired,
     onCancel: PropTypes.func,
   };
@@ -19,15 +20,11 @@ export default class Confirm extends Component {
     });
   }
 
-  getDefaultProps () {
-
-  }
-
   onCancel () {
     this.setState({
       show: false
     });
-    this.props.onCancel();
+    this.props.onCancel('CANCELED');
   }
 
   onConfirm () {
@@ -44,16 +41,15 @@ export default class Confirm extends Component {
     return (
       <div>
         <div className="modal-backdrop fade in" ></div>
-        <div className="modal fade bs-example-modal-sm in" style={{ display: 'block' }} >
-          <div className="modal-dialog modal-sm">
+        <div className="modal fade in" style={{ display: 'block' }} >
+          <div className="modal-dialog">
             <div className="modal-content">
-
               <div className="modal-header">
-                <button type="button" className="close"><span>×</span></button>
-                <h4 className="modal-title" id="mySmallModalLabel">Small modal</h4>
+                <button type="button" className="close" onClick={this.onCancel.bind(this)}><span>×</span></button>
+                <h4 className="modal-title" >确认提示</h4>
               </div>
               <div className="modal-body">
-                hahahaha
+                {this.props.content}
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-default" onClick={this.onCancel.bind(this)}>Cancel</button>

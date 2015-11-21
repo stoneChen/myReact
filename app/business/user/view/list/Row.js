@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import confirm from 'util/confirm';
 
 class Row extends Component {
   static propTypes = {
@@ -8,8 +9,12 @@ class Row extends Component {
   };
 
   handleDel () {
-    debugger;
-    this.props.del(this.props.user.id);
+    confirm(`确定删除[${this.props.user.name}]吗？`)
+      .then(() => {
+        this.props.del(this.props.user.id);
+      },
+      () => {}
+    );
   }
 
   render () {
@@ -23,7 +28,8 @@ class Row extends Component {
           <Link className="btn btn-default btn-xs"
                 to={`/user-detail/${user.id}`}>edit</Link>&nbsp;
           <button className="btn btn-danger btn-xs"
-                  onClick={this.handleDel.bind(this)}>delete</button>
+                  onClick={this.handleDel.bind(this)}>delete
+          </button>
         </td>
       </tr>
     );

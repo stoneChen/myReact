@@ -1,4 +1,16 @@
 import { USER_ACTION } from './constant';
+import request from 'util/request';
+import log from './log';
+
+export function fetchUsers () {
+  return (dispatch) => {
+    request('/api/user')
+      .then(function (res) {
+        log(res);
+        dispatch(getList(res.data));
+      });
+  };
+}
 
 export function add (user) {
   return {
@@ -21,9 +33,10 @@ export function update (user) {
   };
 }
 
-export function getList () {
+export function getList (users) {
 
   return {
-    type: USER_ACTION.GET_LIST
+    type: USER_ACTION.GET_LIST,
+    payload: users
   };
 }

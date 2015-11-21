@@ -12,8 +12,29 @@ class List extends Component {
     users: PropTypes.array.isRequired
   };
 
-  render () {
+  componentDidMount () {
+    this.props.actions.fetchUsers();
+  }
+
+  renderUsers () {
     const { users } = this.props;
+    if (users.length) {
+      return users.map( user =>
+          <Row key={user.id}
+               user={user}
+               del={this.props.actions.del} />
+      );
+    } else {
+      return (
+        <tr>
+          <td colSpan="4">no users</td>
+        </tr>
+      );
+    }
+  }
+
+  render () {
+
     return (
       <div className="component-user-list">
         <h3>This is the User List Component.</h3>
@@ -27,13 +48,7 @@ class List extends Component {
             </tr>
           </thead>
           <tbody>
-          {
-            users.map( user =>
-                <Row key={user.id}
-                     user={user}
-                     del={this.props.actions.del} />
-            )
-          }
+          {this.renderUsers()}
           </tbody>
         </table>
       </div>

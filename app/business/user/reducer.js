@@ -1,20 +1,21 @@
 import { USER_ACTION } from './constant';
-//import log from 'util/debug';
 
-const initState = [
-  {
-    id: 111,
-    name: 'Tom',
-    age: 20
-  },
-  {
-    id: 222,
-    name: 'John',
-    age: 30
-  }
-];
 
-export default function (state = initState, action = {}) {
+//const initState = [
+//  {
+//    id: 111,
+//    name: 'Tom',
+//    age: 20
+//  },
+//  {
+//    id: 222,
+//    name: 'John',
+//    age: 30
+//  }
+//];
+
+
+export default function (state = [], action = {}) {
   const type = action.type;
   switch (type) {
     case USER_ACTION.GET_LIST:

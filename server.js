@@ -3,7 +3,7 @@ var os = require('os');
 var express = require('express');
 var open = require('open');
 
-var webpack, config, compiler;
+var webpack, config, compiler, mockApi;
 
 
 var curIP = getIPAddress();
@@ -19,6 +19,7 @@ if (process.env.NODE_ENV !== 'production') {
     publicPath: config.output.publicPath
   }));
   app.use(require('webpack-hot-middleware')(compiler));
+  require('./mock/api')(app);
 } else {
   app.use(express.static('dist'));
 }

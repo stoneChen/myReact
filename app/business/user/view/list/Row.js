@@ -12,8 +12,7 @@ class Row extends Component {
     confirm(`确定删除[${this.props.user.name}]吗？`)
       .then(() => {
         this.props.del(this.props.user.id);
-      },
-      () => {}
+      }
     );
   }
 

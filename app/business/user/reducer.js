@@ -15,11 +15,14 @@ import { USER_ACTION } from './constant';
 //];
 
 
-export default function (state = [], action = {}) {
+export default function (state = null, action = {}) {
   const type = action.type;
   switch (type) {
-    case USER_ACTION.GET_LIST:
+    case USER_ACTION.SET_LIST:
       return action.payload;
+
+    case USER_ACTION.CLEAR:
+      return null;
 
     case USER_ACTION.ADD:
       const newId = Date.now();

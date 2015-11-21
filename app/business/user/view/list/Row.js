@@ -3,11 +3,6 @@ import { Link } from 'react-router';
 import confirm from 'util/confirm';
 
 class Row extends Component {
-  static propTypes = {
-    del: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired
-  };
-
   handleDel () {
     confirm(`确定删除[${this.props.user.name}]吗？`)
       .then(() => {
@@ -34,5 +29,10 @@ class Row extends Component {
     );
   }
 }
+
+Row.propTypes = {
+  del: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired
+};
 
 export default Row;

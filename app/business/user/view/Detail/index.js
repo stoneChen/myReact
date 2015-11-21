@@ -10,12 +10,6 @@ import log from '../../log';
 
 
 class Detail extends React.Component {
-  static propTypes = {
-    actions: PropTypes.object.isRequired,
-    users: PropTypes.array.isRequired,
-    params: PropTypes.object.isRequired
-  };
-
   constructor (props, context) {
     super(props, context);
     const { users, params } = this.props;
@@ -105,6 +99,11 @@ class Detail extends React.Component {
   }
 }
 
+Detail.propTypes = {
+  actions: PropTypes.object.isRequired,
+  users: PropTypes.array.isRequired,
+  params: PropTypes.object.isRequired
+};
 
 const mapStateToProps = function (state) {
   return {

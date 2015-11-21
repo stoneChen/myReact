@@ -6,9 +6,16 @@ export function fetchUsers () {
   return (dispatch) => {
     request('/api/user')
       .then(function (res) {
-        log(res);
-        dispatch(getList(res.data));
+        log('fetch user res:', res);
+        dispatch(setList(res.data));
       });
+  };
+}
+
+export function clear () {
+  return {
+    type: USER_ACTION.CLEAR,
+    payload: null
   };
 }
 
@@ -33,10 +40,10 @@ export function update (user) {
   };
 }
 
-export function getList (users) {
+export function setList (users) {
 
   return {
-    type: USER_ACTION.GET_LIST,
+    type: USER_ACTION.SET_LIST,
     payload: users
   };
 }

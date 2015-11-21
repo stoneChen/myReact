@@ -7,12 +7,6 @@ import { bindActionCreators } from 'redux';
 import * as creditActions from '../../action';
 
 class Detail extends React.Component {
-  static propTypes = {
-    actions: PropTypes.object.isRequired,
-    credits: PropTypes.array.isRequired,
-    params: PropTypes.object.isRequired
-  };
-
   constructor (props, context) {
     super(props, context);
     const { credits, params } = this.props;
@@ -97,6 +91,11 @@ class Detail extends React.Component {
   }
 }
 
+Detail.propTypes = {
+  actions: PropTypes.object.isRequired,
+  credits: PropTypes.array.isRequired,
+  params: PropTypes.object.isRequired
+};
 
 const mapStateToProps = function (state) {
   return {

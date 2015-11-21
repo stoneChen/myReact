@@ -2,11 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 class Row extends Component {
-  static propTypes = {
-    del: PropTypes.func.isRequired,
-    credit: PropTypes.object.isRequired
-  };
-
   handleDel () {
     debugger;
     this.props.del(this.props.credit.id);
@@ -29,5 +24,10 @@ class Row extends Component {
     );
   }
 }
+
+Row.propTypes = {
+  del: PropTypes.func.isRequired,
+  credit: PropTypes.object.isRequired
+};
 
 export default Row;

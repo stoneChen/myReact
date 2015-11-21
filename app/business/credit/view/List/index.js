@@ -7,11 +7,6 @@ import * as actions from '../../action';
 import Row from './Row';
 
 class List extends Component {
-  static propTypes = {
-    actions: PropTypes.object.isRequired,
-    credits: PropTypes.array.isRequired
-  };
-
   render () {
     const { credits } = this.props;
     return (
@@ -40,6 +35,11 @@ class List extends Component {
     );
   }
 }
+
+List.propTypes = {
+  actions: PropTypes.object.isRequired,
+  credits: PropTypes.array.isRequired
+};
 
 const mapStateToProps = function (state) {
   return {

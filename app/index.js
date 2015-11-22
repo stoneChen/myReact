@@ -5,6 +5,7 @@ import { Route, Redirect } from 'react-router';
 import { ReduxRouter } from 'redux-router';
 import configStore from './base/store';
 import Application from './widget/Application';
+import Loading from './widget/loading';
 import NoMatch from './widget/NoMatch';
 import * as routes from './base/route';
 
@@ -36,13 +37,16 @@ React.render(
   <div className="container">
     <Provider store={store}>
       {() => (
-        <ReduxRouter>
-          <Redirect from="/" to="/home" />
-          <Route path="/" component={Application}>
-            {concatSubRoutes()}
-          </Route>
-          <Route path="*" component={NoMatch}/>
-        </ReduxRouter>
+        <div>
+          <ReduxRouter>
+            <Redirect from="/" to="/home" />
+            <Route path="/" component={Application}>
+              {concatSubRoutes()}
+            </Route>
+            <Route path="*" component={NoMatch}/>
+          </ReduxRouter>
+          <Loading/>
+        </div>
       )}
     </Provider>
     {renderDebugPanel()}

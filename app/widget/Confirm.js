@@ -1,5 +1,5 @@
 import React,{ Component, PropTypes } from 'react';
-
+import classnames from 'classnames';
 export default class Confirm extends Component {
   static propTypes = {
     content: PropTypes.string.isRequired,
@@ -12,24 +12,23 @@ export default class Confirm extends Component {
     this.state = {
       show: true
     };
-  }
-
-  componentWillReceiveProps (nextProps) {
-    this.setState({
-      show: nextProps.show
-    });
+    setTimeout(() => {
+      this.setState({
+        animateIn: true
+      });
+    }, 0);
   }
 
   onCancel () {
     this.setState({
-      show: false
+      animateIn: false
     });
     this.props.onCancel('CANCELED');
   }
 
   onConfirm () {
     this.setState({
-      show: false
+      animateIn: false
     });
     this.props.onConfirm();
   }
@@ -38,10 +37,11 @@ export default class Confirm extends Component {
     if (!this.state.show) {
       return <div />;
     }
+    const animateClassName = this.state.animateIn ? 'in' : '';
     return (
       <div>
-        <div className="modal-backdrop fade in" ></div>
-        <div className="modal fade in" style={{ display: 'block' }} >
+        <div className={classnames('modal-backdrop', 'fade', animateClassName)} ></div>
+        <div className={classnames('modal', 'fade', animateClassName)} style={{ display: 'block' }} >
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">

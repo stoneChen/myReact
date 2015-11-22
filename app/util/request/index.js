@@ -1,3 +1,12 @@
-import request from 'axios';
+import axios from 'axios';
+//import setLoading from '../../widget/loading/action';
 
-export default request;
+//const request = function (...args) {
+//  //todo showLoading
+//  axios.apply(axios, args)
+//    .then(() => {
+//      //todo hideLoading
+//    });
+//};
+
+export default axios;

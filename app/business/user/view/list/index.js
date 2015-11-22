@@ -24,7 +24,7 @@ class List extends Component {
 
   componentDidMount () {
     log('List componentDidMount.');
-    this.props.actions.fetchUsers();
+    this.props.actions.asyncGetList();
   }
 
   componentWillUnmount () {
@@ -81,7 +81,7 @@ List.propTypes = {
 const mapStateToProps = function (state) {
   log('mapStateToProps:', state);
   return {
-    users: state.user
+    users: state.users
   };
 };
 

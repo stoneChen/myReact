@@ -6,21 +6,34 @@ import { pushState } from 'redux-router';
 import { bindActionCreators } from 'redux';
 import * as userActions from '../../action';
 import log from '../../log';
-//import log from 'util/debug';
 
 
 class Detail extends React.Component {
   constructor (props, context) {
     super(props, context);
-    const { users, params } = this.props;
-    const userId = params.id;
-    const curUser = this.curUser =
-      users.find( u => u.id.toString() === userId );
     this.state = {
-      name: curUser.name,
-      age: curUser.age
+      id: null,
+      name: null,
+      age: null
     };
-    log('constructor');
+  }
+
+  componentDidMount () {
+    const { params } = this.props;
+    log('user id:', params.id);
+    this.props.actions.fetchSingle(params.id);
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const user = nextProps.user;
+    log('fetched user:', user);
+    if (user) {
+      this.setState({
+        id: user.id,
+        name: user.name,
+        age: user.age
+      });
+    }
   }
 
   backToUserList () {
@@ -41,15 +54,10 @@ class Detail extends React.Component {
 
   handleSubmit () {
     this.props.actions.update({
-      id: this.curUser.id,
+      id: this.state.id,
       name: this.state.name,
       age: this.state.age
     });
-    this.backToUserList();
-  }
-
-  handleDel () {
-    this.props.actions.del(this.curUser.id);
     this.backToUserList();
   }
 
@@ -63,7 +71,7 @@ class Detail extends React.Component {
             <div className="col-xs-6">
               <input type="text"
                      className="form-control"
-                     value={this.props.params.id}
+                     value={this.state.id}
                      readOnly
                 />
             </div>
@@ -101,13 +109,13 @@ class Detail extends React.Component {
 
 Detail.propTypes = {
   actions: PropTypes.object.isRequired,
-  users: PropTypes.array.isRequired,
+  user: PropTypes.object,
   params: PropTypes.object.isRequired
 };
 
 const mapStateToProps = function (state) {
   return {
-    users: state.user
+    user: state.user
   };
 };
 

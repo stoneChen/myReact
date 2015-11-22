@@ -15,7 +15,7 @@ import { USER_ACTION } from './constant';
 //];
 
 
-export default function (state = null, action = {}) {
+export const users = function (state = null, action = {}) {
   const type = action.type;
   switch (type) {
     case USER_ACTION.SET_LIST:
@@ -27,24 +27,33 @@ export default function (state = null, action = {}) {
     case USER_ACTION.ADD:
       const newId = Date.now();
       return [
-        Object.assign(action.payload, { id: newId }),
+        Object.assign(action.payload, {id: newId}),
         ...state
       ];
 
     case USER_ACTION.DEL:
-      return state.filter( user =>
+      return state.filter(user =>
         user.id !== action.payload.id
       );
 
     case USER_ACTION.UPDATE:
-      return state.map( user =>
+      return state.map(user =>
           user.id === action.payload.id ?
-            Object.assign({}, user, action.payload):
+            Object.assign({}, user, action.payload) :
             user
       );
 
     default:
       return state;
   }
-}
+};
 
+export const user = function (state = null, action = {}) {
+  switch (action.type) {
+    case USER_ACTION.SET_SINGLE:
+      return action.payload;
+
+    default:
+      return state;
+  }
+};

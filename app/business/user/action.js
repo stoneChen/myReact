@@ -2,13 +2,30 @@ import { USER_ACTION } from './constant';
 import request from 'util/request';
 import log from './log';
 
-export function fetchUsers () {
+export function fetchList () {
   return (dispatch) => {
     request('/api/user')
       .then(function (res) {
         log('fetch user res:', res);
         dispatch(setList(res.data));
       });
+  };
+}
+
+export function fetchSingle (id) {
+  return (dispatch) => {
+    request(`/api/user/${id}`)
+      .then(function (res) {
+        log('fetch one user res:', res);
+        dispatch(setSingle(res.data));
+      });
+  };
+}
+
+export function setSingle (user) {
+  return {
+    type: USER_ACTION.SET_SINGLE,
+    payload: user
   };
 }
 

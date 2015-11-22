@@ -9,7 +9,7 @@
     "lint": "eslint app",
     "build:dev": "npm run clean && webpack",
     "build:prod": "npm run clean && npm run lint && NODE_ENV=production webpack --config webpack.config.production.js",
-    "serve:dev": "NODE_ENV=development node server.js",
+    "serve:dev": "NODE_ENV=development DEBUG=app node server.js",
     "serve:prod": "NODE_ENV=production node server.js",
     "dev:debug": "npm run build:dev && DEVTOOLS=true npm run serve:dev",
     "dev": "npm run build:dev && npm run serve:dev",

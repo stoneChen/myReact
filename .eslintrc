@@ -30,7 +30,6 @@ rules:
   no-underscore-dangle: 0
   no-unused-vars: 1
   no-var: 2
-  object-curly-spacing: [ 2, 'always' ]
   quotes: [ 2, 'single' ]
   semi: [ 2, 'always' ]
   space-after-keywords: [ 2, 'always' ]

@@ -1,6 +1,7 @@
 var path = require('path');
 var os = require('os');
 var express = require('express');
+var debug = require('debug')('app');
 var open = require('open');
 
 var webpack, config, compiler, mockApi;
@@ -14,6 +15,10 @@ if (process.env.NODE_ENV !== 'production') {
   webpack = require('webpack');
   config = require('./webpack.config');
   compiler = webpack(config);
+  app.all('*', function (req, res, next) {
+    debug('request:', req.originalUrl);
+    return next();
+  });
   app.use(require('webpack-dev-middleware')(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath

@@ -12,16 +12,14 @@ class Detail extends React.Component {
   constructor (props, context) {
     super(props, context);
     this.state = {
-      id: null,
-      name: null,
-      age: null
+      user: {}
     };
   }
 
   componentDidMount () {
     const { params } = this.props;
     log('user id:', params.id);
-    this.props.actions.fetchSingle(params.id);
+    this.props.actions.asyncGetItem(params.id);
   }
 
   componentWillReceiveProps (nextProps) {
@@ -29,9 +27,7 @@ class Detail extends React.Component {
     log('fetched user:', user);
     if (user) {
       this.setState({
-        id: user.id,
-        name: user.name,
-        age: user.age
+        user
       });
     }
   }
@@ -42,26 +38,25 @@ class Detail extends React.Component {
 
   handleNameChange (e) {
     this.setState({
-      name: e.target.value
+      user: Object.assign({}, this.state.user, { name: e.target.value})
     });
   }
 
   handleAgeChange (e) {
     this.setState({
-      age: e.target.value
+      user: Object.assign({}, this.state.user, { age: e.target.value})
     });
   }
 
   handleSubmit () {
-    this.props.actions.update({
-      id: this.state.id,
-      name: this.state.name,
-      age: this.state.age
-    });
-    this.backToUserList();
+    this.props.actions.asyncUpdate(this.state.user)
+      .then(() => {
+        this.backToUserList();
+      });
   }
 
   render () {
+    const { user } = this.state;
     return (
       <div className="component-user-detail">
         <h3>This is the User Detail Component.</h3>
@@ -71,7 +66,7 @@ class Detail extends React.Component {
             <div className="col-xs-6">
               <input type="text"
                      className="form-control"
-                     value={this.state.id}
+                     value={user.id}
                      readOnly
                 />
             </div>
@@ -82,7 +77,7 @@ class Detail extends React.Component {
               <input type="text"
                      className="form-control"
                      onChange={this.handleNameChange.bind(this)}
-                     value={this.state.name}/>
+                     value={user.name}/>
             </div>
           </div>
           <div className="form-group">
@@ -91,7 +86,7 @@ class Detail extends React.Component {
               <input type="text"
                      className="form-control"
                      onChange={this.handleAgeChange.bind(this)}
-                     value={this.state.age}/>
+                     value={user.age}/>
             </div>
           </div>
           <div className="form-group">

@@ -2,7 +2,7 @@ import { USER_ACTION } from './constant';
 import request from 'util/request';
 import log from './log';
 
-export function fetchList () {
+export function asyncGetList () {
   return (dispatch) => {
     request('/api/user')
       .then(function (res) {
@@ -12,17 +12,23 @@ export function fetchList () {
   };
 }
 
-export function fetchSingle (id) {
+export function asyncGetItem (id) {
   return (dispatch) => {
-    request(`/api/user/${id}`)
+    return request(`/api/user/${id}`)
       .then(function (res) {
         log('fetch one user res:', res);
-        dispatch(setSingle(res.data));
+        dispatch(setItem(res.data));
       });
   };
 }
 
-export function setSingle (user) {
+export function asyncUpdate (user) {
+  return () => {
+    return request.patch(`/api/user/${user.id}`, user);
+  };
+}
+
+export function setItem (user) {
   return {
     type: USER_ACTION.SET_SINGLE,
     payload: user

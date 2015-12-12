@@ -6,6 +6,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var sourceDir = path.join(__dirname, 'app');
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
+  debug: true,
   entry: [
     'webpack-hot-middleware/client',
     './app/index'

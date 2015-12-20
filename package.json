@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist",
-    "lint": "eslint app --fix",
+    "lint": "eslint app",
+    "lintfix": "eslint app --fix",
     "build:dev": "npm run clean && webpack",
     "build:prod": "npm run clean && npm run lint && NODE_ENV=production webpack --config webpack.config.production.js",
     "serve:dev": "NODE_ENV=development DEBUG=app node server.js",

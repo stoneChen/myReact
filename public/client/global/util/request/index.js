@@ -1,5 +1,5 @@
 import axios from 'axios';
-//import setLoading from 'global-component/Loading/action';
+//import setLoading from '../../widget/loading/action';
 
 //const request = function (...args) {
 //  //todo showLoading

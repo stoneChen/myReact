@@ -3,11 +3,11 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Redirect } from 'react-router';
 import { ReduxRouter } from 'redux-router';
-import configStore from './base/store';
-import Application from './widget/Application';
-//import Loading from './widget/loading';
-import NoMatch from './widget/NoMatch';
-import * as routes from './base/route';
+import configStore from 'global/store';
+import Application from 'global/components/Application';
+//import Loading from 'global/components/loading';
+import NoMatch from 'global/components/NoMatch';
+import * as routes from 'global/route';
 
 const store = configStore();
 

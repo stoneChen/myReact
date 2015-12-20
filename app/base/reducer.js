@@ -1,5 +1,5 @@
 //inject
-export { user } from '../business/user/reducer';
-export { users } from '../business/user/reducer';
-export { default as loading } from '../widget/loading/reducer';
+export { user } from '../module/user/reducer';
+export { users } from '../module/user/reducer';
+export { default as loading } from 'global-component/Loading/reducer';
 

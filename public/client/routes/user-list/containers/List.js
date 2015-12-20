@@ -37,9 +37,9 @@ class List extends Component {
     const { users } = this.props;
     if (users && users.length) {
       return users.map(user =>
-          <Row key={user.id}
-               user={user}
-               del={this.props.actions.del}/>
+        <Row key={user.id}
+             user={user}
+             del={this.props.actions.del}/>
       );
     } else {
       return (

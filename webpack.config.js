@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var sourceDir = path.join(__dirname, 'app');
+var srcDir = path.join(__dirname, 'app');
 module.exports = {
   devtool: 'source-map',
   debug: true,
@@ -18,8 +18,8 @@ module.exports = {
   resolve: {
     extensions: [ '', '.js' ],
     alias: {
-      util: sourceDir + '/util',
-      widget: sourceDir + '/widget'
+      'util': path.join(srcDir, 'util'),
+      'global-component': path.join(srcDir, 'global-component')
     }
   },
   plugins: [
@@ -42,8 +42,8 @@ module.exports = {
     loaders: [
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.styl$/, loader: 'style-loader!css-loader!cssnext-loader!stylus-loader' },
-      { test: /\.js$/, loaders: [ 'babel' ], include: sourceDir },
-      { test: /\.js$/, loader: "eslint-loader", include: sourceDir },
+      { test: /\.js$/, loaders: [ 'babel' ], include: srcDir },
+      { test: /\.js$/, loader: "eslint-loader", include: srcDir },
       { test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=8192' }
     ]
   },

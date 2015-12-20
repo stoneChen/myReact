@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import { Route, Redirect } from 'react-router';
 import { ReduxRouter } from 'redux-router';
 import configStore from './base/store';
-import Application from './widget/Application';
-//import Loading from './widget/loading';
-import NoMatch from './widget/NoMatch';
+import Application from 'global-component/Application';
+//import Loading from 'global-component/Loading';
+import NoMatch from 'global-component/NoMatch';
 import * as routes from './base/route';
 
 const store = configStore();

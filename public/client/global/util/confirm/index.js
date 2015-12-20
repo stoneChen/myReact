@@ -1,5 +1,5 @@
 import React from 'react';
-import Confirm from 'global-component/Confirm';
+import Confirm from 'global/components/Confirm';
 import Q from 'q';
 
 const doc = document;

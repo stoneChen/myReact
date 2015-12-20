@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var sourceDir = path.join(__dirname, 'app');
+var srcDir = path.join(__dirname, 'app');
 module.exports = {
   entry: {
     app: './app/index.js'
@@ -17,8 +17,8 @@ module.exports = {
   resolve: {
     extensions: [ '', '.js' ],
     alias: {
-      util: sourceDir + '/util/',
-      widget: sourceDir + '/widget/'
+      'util': path.join(srcDir, 'util'),
+      'global-component': path.join(srcDir, 'global-component')
     }
   },
   plugins: [
@@ -48,7 +48,7 @@ module.exports = {
     loaders: [
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!cssnext-loader') },
       { test: /\.styl$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!cssnext-loader!stylus-loader') },
-      { test: /\.js$/, loaders: [ 'babel' ], include: sourceDir },
+      { test: /\.js$/, loaders: [ 'babel' ], include: srcDir },
       { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
       { test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=8192' }
     ]

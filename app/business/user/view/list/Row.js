@@ -4,6 +4,7 @@ import confirm from 'util/confirm';
 
 class Row extends Component {
   handleDel () {
+    alert(2222);
     confirm(`确定删除[${this.props.user.name}]吗？`)
       .then(() => {
         this.props.del(this.props.user.id);

@@ -15,7 +15,7 @@ module.exports = {
     publicPath: ''
   },
   resolve: {
-    extensions: ['', '.js'],
+    extensions: [ '', '.js' ],
     alias: {
       util: sourceDir + '/util/',
       widget: sourceDir + '/widget/'
@@ -36,21 +36,21 @@ module.exports = {
         warnings: false
       }
     }),
-    new ExtractTextPlugin('app.min.css', { allChunks: true }),
+    new ExtractTextPlugin('app.[contenthash].css', { allChunks: true }),
     new HtmlWebpackPlugin({
       title: 'Redux React Router Example',
       filename: 'index.html',
       template: 'index.template.html',
-      //hash: true,
-      favicon: path.join(__dirname, 'assets/images/favicon.ico')
+      inject: true
     })
   ],
   module: {
     loaders: [
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!cssnext-loader') },
-      { test: /\.js$/, loaders: ['babel'], include: sourceDir },
-      {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
-      {test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=8192'}
+      { test: /\.styl$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!cssnext-loader!stylus-loader') },
+      { test: /\.js$/, loaders: [ 'babel' ], include: sourceDir },
+      { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
+      { test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=8192' }
     ]
   },
   cssnext: {

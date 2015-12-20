@@ -1,4 +1,4 @@
-require('./detail.scss');
+require('./detail.styl');
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';

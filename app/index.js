@@ -1,12 +1,14 @@
 /* global __DEVTOOLS__ */
 import React from 'react';
+import ReactDOM  from 'react-dom';
 import { Provider } from 'react-redux';
 import { Route, Redirect } from 'react-router';
 import { ReduxRouter } from 'redux-router';
 import configStore from './base/store';
-import Application from 'global-component/Application';
-//import Loading from 'global-component/Loading';
-import NoMatch from 'global-component/NoMatch';
+import Application from 'components/Application';
+import Confirm  from 'components/Confirm';
+import Loading from 'components/Loading';
+import NoMatch from 'components/NoMatch';
 import * as routes from './base/route';
 
 const store = configStore();
@@ -33,10 +35,9 @@ const renderDebugPanel = function () {
   }
 };
 
-React.render(
+ReactDOM.render(
   <div className="container">
     <Provider store={store}>
-      {() => (
         <div>
           <ReduxRouter>
             <Redirect from="/" to="/home" />
@@ -45,11 +46,9 @@ React.render(
             </Route>
             <Route path="*" component={NoMatch}/>
           </ReduxRouter>
-          {
-            /*<Loading/>*/
-          }
+          <Loading/>
+          <Confirm />
         </div>
-      )}
     </Provider>
     {renderDebugPanel()}
   </div>

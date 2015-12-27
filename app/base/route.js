@@ -1,3 +1,3 @@
 //inject
-export { default as user } from '../module/user/route';
-export { default as home } from '../module/home/route';
+export { default as user } from 'modules/user/route';
+export { default as home } from 'modules/home/route';

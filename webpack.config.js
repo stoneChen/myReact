@@ -18,8 +18,9 @@ module.exports = {
   resolve: {
     extensions: [ '', '.js' ],
     alias: {
-      'util': path.join(srcDir, 'util'),
-      'global-component': path.join(srcDir, 'global-component')
+      'components': path.join(srcDir, 'components'),
+      'modules': path.join(srcDir, 'modules'),
+      'utils': path.join(srcDir, 'utils'),
     }
   },
   plugins: [

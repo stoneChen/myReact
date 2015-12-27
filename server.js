@@ -45,7 +45,7 @@ app.listen(port, curIP, function (err) {
   var address = ['http://', curIP, ':', port].join('');
   console.log('Serving in [ %s ] mode', process.env.NODE_ENV);
   console.log('Listening at %s', address);
-  //open(address);
+  open(address);
 });
 
 

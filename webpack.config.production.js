@@ -20,6 +20,7 @@ module.exports = {
       'components': path.join(srcDir, 'components'),
       'modules': path.join(srcDir, 'modules'),
       'utils': path.join(srcDir, 'utils'),
+      'base': path.join(srcDir, 'base')
     }
   },
   plugins: [
@@ -48,9 +49,8 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!cssnext-loader') },
-      { test: /\.styl$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!cssnext-loader!stylus-loader') },
+      { test: /\.styl$/, loader: 'style-loader!css-loader!cssnext-loader!stylus-loader' },
       { test: /\.js$/, loaders: [ 'babel' ], include: srcDir },
-      { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
       { test: /\.(png|jpg|gif|svg|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=8192' }
     ]
   },

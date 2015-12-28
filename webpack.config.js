@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var srcDir = path.join(__dirname, 'app');
 module.exports = {
@@ -21,10 +22,12 @@ module.exports = {
       'components': path.join(srcDir, 'components'),
       'modules': path.join(srcDir, 'modules'),
       'utils': path.join(srcDir, 'utils'),
+      'base': path.join(srcDir, 'base')
     }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin('index.[contenthash].css', {allChunks: true}),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
@@ -41,7 +44,7 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
       { test: /\.styl$/, loader: 'style-loader!css-loader!cssnext-loader!stylus-loader' },
       { test: /\.js$/, loaders: [ 'babel' ], include: srcDir },
       { test: /\.js$/, loader: "eslint-loader", include: srcDir },

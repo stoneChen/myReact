@@ -1,28 +1,28 @@
 import { USER_ACTION } from './constant';
-import { showLoading, hideLoading } from 'components/Loading/action';
+//import { showLoading, hideLoading } from 'components/Loading/action';
 import request from 'utils/request';
 import log from './log';
 
 export function asyncGetList () {
   return (dispatch) => {
-    dispatch(showLoading());//还不清楚如何全局统一处理...
+    //dispatch(showLoading());//还不清楚如何全局统一处理...
     request('/api/user')
       .then(function (res) {
         log('fetch user res:', res);
         dispatch(setList(res.data));
-        dispatch(hideLoading());
+        //dispatch(hideLoading());
       });
   };
 }
 
 export function asyncGetItem (id) {
   return (dispatch) => {
-    dispatch(showLoading());
+    //dispatch(showLoading());
     return request(`/api/user/${id}`)
       .then(function (res) {
         log('fetch one user res:', res);
         dispatch(setItem(res.data));
-        dispatch(hideLoading());
+        //dispatch(hideLoading());
       });
   };
 }

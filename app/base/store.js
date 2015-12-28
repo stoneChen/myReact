@@ -20,7 +20,7 @@ combinedCreateStore = compose(...storeEnhancers)(createStore);
 const finalCreateStore = applyMiddleware(thunk, logger)(combinedCreateStore);
 const combinedReducer = combineReducers(reducers);
 
-export default function configureStore (initialState) {
+function configureStore (initialState) {
 
   const store = finalCreateStore(combinedReducer, initialState);
   if (module.hot) {
@@ -34,3 +34,6 @@ export default function configureStore (initialState) {
 
   return store;
 }
+
+const store = configureStore();
+export default store;

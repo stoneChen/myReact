@@ -1,5 +1,5 @@
 var path = require('path');
-var os = require('os');
+var ip = require('ip');
 var express = require('express');
 var debug = require('debug')('app');
 var open = require('open');
@@ -7,7 +7,7 @@ var open = require('open');
 var webpack, config, compiler, mockApi, bodyParser;
 
 
-var curIP = getIPAddress();
+var curIP = ip.address();
 var port = 3000;
 var app = express();
 
@@ -50,16 +50,3 @@ app.listen(port, curIP, function (err) {
 
 
 
-function getIPAddress () {
-  var ifaces = os.networkInterfaces();
-  var ip = '';
-  for (var dev in ifaces) {
-    ifaces[dev].forEach(function (details) {
-      if (ip === '' && details.family === 'IPv4' && !details.internal) {
-        ip = details.address;
-
-      }
-    });
-  }
-  return ip || "127.0.0.1";
-}

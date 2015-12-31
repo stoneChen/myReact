@@ -1,15 +1,14 @@
 import { LOADING_SHOW, LOADING_HIDE } from './action';
+import Immutable from 'immutable';
 
-export default function (state = { show: false }, action = {}) {
+const initialState = Immutable.Map({ show: false });
+
+export default function (state = initialState, action = {}) {
   switch (action.type) {
     case LOADING_SHOW:
-      return {
-        show: true
-      };
+      return state.set('show', true);
     case LOADING_HIDE:
-      return {
-        show: false
-      };
+      return state.set('show', false);
     default:
       return state;
   }

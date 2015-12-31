@@ -1,6 +1,5 @@
 /* global __DEVTOOLS__ */
 import { routerStateReducer, reduxReactRouter } from 'redux-router';
-//import { createHistory } from 'history';
 import createHashHistory from 'history/lib/createHashHistory';
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';

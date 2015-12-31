@@ -8,8 +8,8 @@ import { showConfirm } from 'components/Confirm/action';
 import Row from '../component/Row';
 import log from '../log';
 
-@connect(state => ({ users: state.users }),
-  dispatch => ({ actions: bindActionCreators(Object.assign(userActions, { showConfirm }), dispatch) }))
+@connect(state => ({ users: state.users.toJS() }),
+  dispatch => ({ actions: bindActionCreators(Object.assign({}, userActions, { showConfirm }), dispatch) }))
 export default class List extends Component {
   constructor () {
     super();
@@ -21,7 +21,7 @@ export default class List extends Component {
   componentWillReceiveProps (nextProps) {
     log('List componentWillReceiveProps:', nextProps);
     this.setState({
-      loading: !!nextProps.users
+      loading: !nextProps.users
     });
   }
 
@@ -81,18 +81,3 @@ List.propTypes = {
   users: PropTypes.array
 };
 
-const mapStateToProps = function (state) {
-  log('mapStateToProps:', state);
-  return {
-    users: state.users
-  };
-};
-
-const mapDispatchToProps = function (dispatch) {
-  log('mapDispatchToProps');
-  return {
-    actions: bindActionCreators(userActions, dispatch)
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(List);

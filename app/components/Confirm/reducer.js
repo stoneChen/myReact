@@ -1,17 +1,19 @@
 import { COMFIRM_SHOW, COMFIRM_HIDE } from './action';
+import Immutable from 'immutable';
+const initialState = Immutable.Map({
+  show: false,
+  onConfirm: () => {},
+  onCancel: () => {},
+});
 
-export default function (state = { show: false }, action = {}) {
+export default function (state = initialState, action = {}) {
   switch (action.type) {
     case COMFIRM_SHOW:
-      return Object.assign({
-        show: true,
-        onConfirm: () => {
-        },
-        onCancel: () => {
-        }
-      }, action.payload);
+      return state.merge({ show: true }, action.payload);
+
     case COMFIRM_HIDE:
-      return action.payload;
+      return state.set('show', false);
+
     default:
       return state;
   }

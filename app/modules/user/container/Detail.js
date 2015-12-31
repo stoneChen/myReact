@@ -7,8 +7,11 @@ import { bindActionCreators } from 'redux';
 import * as userActions from '../action';
 import log from '../log';
 
-
-class Detail extends React.Component {
+@connect(state => ({ user: state.user.toJS() }),
+  dispatch => ({ actions: bindActionCreators(Object.assign({}, userActions, { pushState }), dispatch)
+  })
+)
+export default class Detail extends React.Component {
   constructor (props, context) {
     super(props, context);
     this.state = {
@@ -38,13 +41,13 @@ class Detail extends React.Component {
 
   handleNameChange (e) {
     this.setState({
-      user: Object.assign({}, this.state.user, { name: e.target.value})
+      user: Object.assign({}, this.state.user, { name: e.target.value })
     });
   }
 
   handleAgeChange (e) {
     this.setState({
-      user: Object.assign({}, this.state.user, { age: e.target.value})
+      user: Object.assign({}, this.state.user, { age: e.target.value })
     });
   }
 
@@ -60,7 +63,7 @@ class Detail extends React.Component {
     return (
       <div className="component-user-detail">
         <h3>This is the User Detail Component.</h3>
-        <form  className="form-horizontal">
+        <form className="form-horizontal">
           <div className="form-group">
             <label className="col-xs-1 control-label">id:</label>
             <div className="col-xs-6">
@@ -68,7 +71,7 @@ class Detail extends React.Component {
                      className="form-control"
                      value={user.id}
                      readOnly
-                />
+              />
             </div>
           </div>
           <div className="form-group">
@@ -93,7 +96,8 @@ class Detail extends React.Component {
             <div className="col-xs-10 col-xs-offset-1">
               <button className="btn btn-primary"
                       type="button"
-                      onClick={this.handleSubmit.bind(this)}>Submit</button>
+                      onClick={this.handleSubmit.bind(this)}>Submit
+              </button>
             </div>
           </div>
         </form>
@@ -108,16 +112,3 @@ Detail.propTypes = {
   params: PropTypes.object.isRequired
 };
 
-const mapStateToProps = function (state) {
-  return {
-    user: state.user
-  };
-};
-
-const mapDispatchToProps = function (dispatch) {
-  userActions.pushState = pushState; //todo 这么做是不是有坑？
-  return {
-    actions: bindActionCreators(userActions, dispatch)
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Detail);

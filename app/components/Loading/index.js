@@ -3,7 +3,7 @@ require('./loading.styl');
 import React,{ Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-@connect(state => ({ loadingCfg: state.loading }))
+@connect(state => ({ loadingCfg: state.loading.toJS() }))
 export default class Loading extends Component {
   constructor () {
     super();

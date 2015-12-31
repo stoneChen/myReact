@@ -1,26 +1,25 @@
 import React,{ Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
+import { hideConfirm } from './action';
 
-@connect(state => ({ confirmCfg: state.confirm }))
+@connect(state => ({ confirmCfg: state.confirm.toJS() }))
 export default class Confirm extends Component {
   constructor () {
     super();
-    this.state = {
-      show: false
-    };
+    //this.state = {
+    //  show: false
+    //};
   }
 
-  componentWillReceiveProps (nextProps) {
-    this.setState({
-      show: nextProps.confirmCfg.show
-    });
-  }
+  //componentWillReceiveProps (nextProps) {
+  //  this.setState({
+  //    show: nextProps.confirmCfg.show
+  //  });
+  //}
 
   hide () {
-    this.setState({
-      show: false
-    });
+    this.props.dispatch(hideConfirm());
   }
 
   onCancel () {
@@ -34,8 +33,8 @@ export default class Confirm extends Component {
   }
 
   render () {
-    const { show } = this.state;
-    const { content } = this.props.confirmCfg;
+    //const { show } = this.state;
+    const { content, show } = this.props.confirmCfg;
     return (
       <Modal show={show}>
         <Modal.Header closeButton>
@@ -54,5 +53,6 @@ export default class Confirm extends Component {
 }
 
 Confirm.propTypes = {
+  dispatch: PropTypes.func,
   confirmCfg: PropTypes.object
 };

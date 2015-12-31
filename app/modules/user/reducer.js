@@ -1,5 +1,5 @@
 import { USER_ACTION } from './constant';
-
+import Immutable  from 'immutable';
 
 //const initState = [
 //  {
@@ -15,32 +15,29 @@ import { USER_ACTION } from './constant';
 //];
 
 
-export const users = function (state = null, action = {}) {
+export const users = function (state = Immutable.List([]), action = {}) {
   const type = action.type;
   switch (type) {
     case USER_ACTION.SET_LIST:
-      return action.payload;
+      return state.merge(action.payload);
 
     case USER_ACTION.CLEAR:
-      return null;
+      return state.clear();
 
     case USER_ACTION.ADD:
       const newId = Date.now();
-      return [
-        Object.assign(action.payload, {id: newId}),
-        ...state
-      ];
+      return state.push(Object.assign(action.payload, { id: newId }));
 
     case USER_ACTION.DEL:
       return state.filter(user =>
-        user.id !== action.payload.id
+        user.toJS().id !== action.payload.id
       );
 
     case USER_ACTION.UPDATE:
       return state.map(user =>
-          user.id === action.payload.id ?
-            Object.assign({}, user, action.payload) :
-            user
+        user.toJS().id === action.payload.id ?
+          Object.assign({}, user, action.payload) :
+          user
       );
 
     default:
@@ -48,10 +45,10 @@ export const users = function (state = null, action = {}) {
   }
 };
 
-export const user = function (state = null, action = {}) {
+export const user = function (state = Immutable.Map({}), action = {}) {
   switch (action.type) {
     case USER_ACTION.SET_SINGLE:
-      return action.payload;
+      return Immutable.Map(action.payload);
 
     default:
       return state;

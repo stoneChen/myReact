@@ -1,4 +1,4 @@
-require('bootstrap/dist/css/bootstrap.min.css');//引入bootstrap
+require('bootstrap/dist/css/bootstrap.css');//引入bootstrap
 
 const FastClick = require('fastclick');//引入fastclick，解决300ms延迟问题
 FastClick.attach(document.body);
@@ -8,13 +8,8 @@ if (process.env.NODE_ENV === 'development') {//log 全局配置
 }
 
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 
-
-class Application extends Component {
-  static propTypes = {
-    children: PropTypes.any
-  };
+export default class Application extends Component {
 
   render () {
     return (
@@ -25,8 +20,6 @@ class Application extends Component {
   }
 }
 
-function mapStateToProps (state) {
-  return state;
-}
-
-export default connect(mapStateToProps)(Application);
+Application.propTypes = {
+  children: PropTypes.any
+};

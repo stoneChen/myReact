@@ -10,7 +10,7 @@ export const showConfirm = function (payload) {
 
 export const hideConfirm = function (payload) {
   return {
-    type: COMFIRM_SHOW,
+    type: COMFIRM_HIDE,
     payload: payload
   };
 };

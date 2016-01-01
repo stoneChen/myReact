@@ -34,6 +34,8 @@ npm run prod
 * redux-logger
 * redux-devtools
 * redux-router
+* immutable
+* react-bootstrap
 
 ### 构建|开发相关：
 * webpack
@@ -47,6 +49,6 @@ npm run prod
 1. 源码目录与很多网上给出的不同，网上几乎所有demo都是基于模块类型划分目录，比如reducers,actions,components等。
 本demo基于业务模块划分目录，因为随着项目的变大，找模块是一件费力的事情。把同一个业务相关的代码集中放置，有利于查找模块。
 
-2. 本demo还未加入Async支持，下一版本会添加(已初步完成)
+2. 以支持Async
 
 3. 自动化测试还未支持

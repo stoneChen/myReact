@@ -19,12 +19,13 @@ export default class Group extends Component {
   }
 
   setItem (index, ipObject) {
+    let newList = this.state.ipList.map((ipObj, i) => {
+      return i === index ? ipObject : ipObj
+    })
     this.setState({
-      ipList: this.state.ipList.map((ipObj, i) => {
-        return i === index ? ipObject : ipObj
-      })
+      ipList: newList
     });
-    this.props.setStr(this.state.ipList.map(o => o.ipStr).join(','))
+    this.props.setStr(newList.map(ipObj => ipObj.ipStr ).join(','))
   }
   
   removeItem (ipObject) {

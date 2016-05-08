@@ -42,7 +42,7 @@ export default class Row extends Component {
   getClassName () {
     return classnames('row clearfix', {
       'has-errors': this.state.parts.some(part => {
-        if (!/^[1-9][0-9]*$/.test(part)) {
+        if (!/^[0-9]*$/.test(part)) {
           return true
         }
         part = Number.parseInt(part, 10)// 4gg 这种字符串会被转换成数字4

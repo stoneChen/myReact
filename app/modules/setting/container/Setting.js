@@ -23,7 +23,9 @@ export default class Setting extends React.Component {
   
   setIpStr (str) {
     this.setState({
-      setting: str,
+      setting: {
+        ipStr: str,
+      },
     })
   }
   
@@ -32,7 +34,7 @@ export default class Setting extends React.Component {
       <div>
         <Group ipStr={ this.props.setting.ipStr } setStr={ this.setIpStr.bind(this) } />
         <p>result:</p>
-        <p>{this.setting}</p>
+        <p>{ this.state.setting.ipStr }</p>
       </div>
     );
   }

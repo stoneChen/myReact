@@ -1,0 +1,27 @@
+.error-explain {
+  clear: both;
+  display: none;
+  padding: 5px 15px;
+  color: red;
+
+}
+.row {
+  /*padding: 10px;*/
+  /*margin: 10px 0;*/
+  border: 1px solid transparent;
+  &.has-errors.is-dirty {
+    border-color: red;
+    .error-explain {
+      display: block;
+    }
+  }
+}
+
+.slide-transition {
+  height: 65px;
+  overflow: hidden;
+  transition: all .4s;
+}
+.slide-enter, .slide-leave {
+  height: 0;
+}

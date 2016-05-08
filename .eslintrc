@@ -31,7 +31,7 @@ rules:
   no-unused-vars: 1
   no-var: 2
   quotes: [ 2, 'single' ]
-  semi: [ 2, 'always' ]
+  semi: [ 0, 'always' ]
   space-after-keywords: [ 2, 'always' ]
   space-before-blocks: [ 2, 'always' ]
   space-before-function-paren: [ 2, 'always' ]

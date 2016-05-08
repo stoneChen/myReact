@@ -10,6 +10,9 @@ export default class Home extends Component {
           <li>
             <Link to="/user-list">go to user-list</Link>
           </li>
+          <li>
+            <Link to="/setting">go to setting</Link>
+          </li>
           {
           /*<li>
             <Link to="/credit-list">go to credit-list</Link>

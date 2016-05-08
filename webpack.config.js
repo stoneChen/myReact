@@ -48,7 +48,7 @@ module.exports = {
       { test: /\.styl$/, loader: 'style-loader!css-loader!cssnext-loader!stylus-loader' },
       { test: /\.js$/, loaders: [ 'babel' ], include: srcDir },
       { test: /\.js$/, loader: "eslint-loader", include: srcDir },
-      { test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=8192' }
+      { test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|eot|ttf)$/, loader: 'url-loader' }
     ]
   },
   cssnext: {

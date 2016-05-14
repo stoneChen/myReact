@@ -1,61 +1,38 @@
 import React, { Component, PropTypes } from 'react'
 import Row from './Row'
-import createKey from 'utils/create-key'
+// import createKey from 'utils/create-key'
 // import Immutable from 'immutable'
 
 export default class Group extends Component {
   constructor (props, context) {
     super(props, context);
-    let list = this.props.ipStr.split(',').map(ip => {
-      return {
-        _key: createKey(),
-        ipStr: ip,
-      }
-    })
-    this.state = {
-      ipList: list
-      // ipList: Immutable.fromJS(list)
-    };
   }
 
-  setItem (index, ipObject) {
-    let newList = this.state.ipList.map((ipObj, i) => {
-      return i === index ? ipObject : ipObj
-    })
-    this.setState({
-      ipList: newList
-    });
-    this.props.setStr(newList.map(ipObj => ipObj.ipStr ).join(','))
-  }
-  
-  removeItem (ipObject) {
-    this.setState({
-      ipList: this.state.ipList.filter(ipObj => {
-        return ipObject !== ipObj
-      })
-    })
-    this.props.setStr(this.state.ipList.map(o => o.ipStr).join(','))
-  }
-  
-  addItem () {
-    this.setState({
-      ipList: [...this.state.ipList, {
-        _key: createKey(),
-        ipStr: '...'
-      }]
-    })
+  componentWillReceiveProps (nextProps) {
 
   }
-  
+
+  setItem (...args) {
+    this.props.ipActions.setItem(args)
+  }
+
+  removeItem (...args) {
+    this.props.ipActions.removeItem(args)
+  }
+
+  addItem (...args) {
+    this.props.ipActions.addItem(args)
+  }
+
   render () {
     return (
       <div>
         {
-          this.state.ipList.map((ipObj, index) => {
+          this.props.ipList.map((ipObj, index) => {
             return (
-              <Row key={ ipObj._key } ipObj={ ipObj } 
+              <Row key={ ipObj._key } ipObj={ ipObj }
                    index={ index } setItem={ this.setItem.bind(this) }
-                   removeItem={ this.removeItem.bind(this) } />
+                   removeItem={ this.removeItem.bind(this) }/>
             )
           })
         }
@@ -64,7 +41,7 @@ export default class Group extends Component {
         </button>
         <hr/>
         <pre>
-          ipList: { global.JSON.stringify(this.state.ipList) }
+          ipList: { global.JSON.stringify(this.props.ipList) }
         </pre>
       </div>
     )
@@ -72,6 +49,6 @@ export default class Group extends Component {
 }
 
 Group.propTypes = {
-  ipStr: PropTypes.string.isRequired,
-  setStr: PropTypes.func.isRequired,
+  ipList: PropTypes.array.isRequired,
+  ipActions: PropTypes.object.isRequired,
 };
